@@ -22,6 +22,9 @@ teaching scenario.
 
 ---
 
+## Git workflow
+- No branches. Always commit directly to `main`.
+
 ## Working context
 
 Full notes, numbers and sources: `01-origin-story/session-notes-2026-10-06.md`.
@@ -53,19 +56,29 @@ Full notes, numbers and sources: `01-origin-story/session-notes-2026-10-06.md`.
 - **4.2 changed two things:** proximity weighted up and recent acceptance
   down, plus the ping wait cut from 90s to 60s. The timeout is the trigger:
   missed pings jumped from 2.3% to about 20% on 12 Aug and are still 13% in
-  early September. Unfilled callouts doubled, from 5.5% to 11%.
+  early September. Unfilled callouts doubled, from 5.5% to 11% (13–14% a
+  week for the three weeks after 4.2), but the week of 31 Aug was back to
+  5.5% (7 of 127 callouts), inside the pre-4.2 weekly range of 2.9–8.3%.
+  One small week; confirm with data after 6 Sep before calling it recovered.
 - **A miss scores the same as a turn-down** (`history.py`; the Glossary says
-  so too). Scores never recover on their own. Result: four responders who
-  turned nothing down (Farlight, The Undertow, Meteor Mite, Vesper) missed a
-  few pings and fell from about 12 pings a week to about 1, and still about 0
-  in September. The others absorbed the work (The Gale is "exhausted").
+  so too). Scores never recover on their own. Result: four responders
+  (Farlight, The Undertow, Meteor Mite, Vesper) fell from about 12 pings a
+  week to about 1, and still about 0 in September. Before 4.2 they turned
+  down about 20% of pings, like everyone else, and missed about 3%; after
+  4.2 they missed 59% (the other twelve, 14%). Their misses came first, then
+  their pings fell. The others absorbed the work (The Gale is "exhausted").
   Inferred from code plus data; scores aren't stored, so this is unconfirmed
   with engineering.
-- **The tickets point at the wrong people.** 147 tickets, many repeated or
-  templated. The "quiet responder" tickets name Ashgrove and Halfmoon, who
-  dipped only about 20%. Kip (Meteor Mite) and Aunt Dot (Vesper) never
-  filed. The interviews were for console research, so the ping problem came
-  up only in passing. The worst-hit handlers complain least.
+- **The tickets are a late, partial signal.** 147 tickets, many repeated or
+  templated; weekly volume went from 5–8 to 20–32 after 12 Aug, but filter
+  and unrelated tickets rose too. "Gone before I could answer" tickets start
+  on 12 Aug (6 that week) and fade to 0 by 31 Aug, though missed pings are
+  still 12.7%. "Quiet responder" tickets (35) start 17 Aug, about a week
+  after the data moved, and peak 24 Aug. They name Farlight (11) and The
+  Undertow (11), plus Ashgrove (5) and Halfmoon (5), who dipped only about
+  30%. None name Meteor Mite or Vesper; Kip and Aunt Dot never filed. The
+  interviews were for console research, so the ping problem came up only in
+  passing. The worst-hit handlers complain least.
 - **Priya's seasonal theory explains callout volume** (about 16 per day in
   August, back to 19 in September), not the misses or the four collapses.
   There's no prior-year data.
@@ -102,7 +115,11 @@ Full notes, numbers and sources: `01-origin-story/session-notes-2026-10-06.md`.
   asked on 14 Aug whether the change was "a decision or… just fell out that
   way"; still unanswered.
 - Helen: what happened to Availability Confidence and the other Q3 items?
-- Ravi: where are the weekly reports?
+- Ravi: where are the weekly reports? Can he supply callouts per week for
+  July–September 2025 (and ideally 2024)? Callouts fell from about 138 a
+  week to 110 in the week of 10 Aug, then 121, 124, 127. That is a one-week
+  step, not a gradual drift, so it can't be called seasonal without prior
+  years.
 - How would Rook spot the next quiet, non-complaining responder?
 - Write the "how ranking works" doc Priya asked for.
 
@@ -110,4 +127,31 @@ Full notes, numbers and sources: `01-origin-story/session-notes-2026-10-06.md`.
 - Separate evidence from belief, and say which is which.
 - Count people, not tickets. Test claims against the pings data and the four
   affected responders.
+- Treat tickets as a late, partial signal: use them for timing and for what
+  handlers feel, not for size or for who is affected. Check them against the
+  pings data by week and by responder before quoting them.
 - Say when something comes from code rather than data, or isn't verified.
+- **Misses rose for everyone, not just the four.** The other twelve went from
+  about 2% missed to 11–16% after 4.2; the four missed 59%. Misses came
+  first, then their pings fell. Pings taken per ping fell from 77% to 64%,
+  and fewer callouts (-15%) explains most, not all, of the drop in takes.
+- **Vesper's own area kept its work.** Old Town callouts barely fell (about
+  1.6 to 1.5 a day), but Vesper went from being pinged on all 72 of them
+  (took 70) to 10 of 38; Nightwell, Captain Vantage and The Longcast got the
+  rest. All four of Vesper's first-week misses were outside Old Town.
+  Meteor Mite shows the same pattern in Eastgate. The Undertow's handler
+  (Desmond Okafor) filed 11 quiet tickets starting 20 Aug; Vesper, Meteor
+  Mite and The Gale have none. Walkthroughs are in
+  `01-origin-story/quiet-responders-vesper-and-meteor-mite.md`.
+- **Why they don't come back (from code, unconfirmed):** +0.08 for a take,
+  -0.12 for a miss or turn-down, floor 0, no decay (the 2019 TODO), kept in
+  memory. The score is worth about 19 minutes of travel against proximity. A
+  low-scored responder is only asked after everyone above has missed or
+  declined, so what they get is the hard leftovers.
+- **Wen was away 14–24 Aug**, and Marcus's 14 Aug question about missed =
+  declined went unanswered. That is one factor in the slow response, not the
+  only one: the 19 Aug "seasonal" call and 26 Aug "August dip" also delayed it.
+- **Still to check:** data after 6 Sep (the week of 31 Aug had 5.5% unfilled,
+  7 of 127, so it may be recovering); prior-year callouts; the 80% to 63%
+  "closest first" claim from colleagues (no distance data in the database).
+  Pronouns for the responders aren't known, so use they/them or the name.
